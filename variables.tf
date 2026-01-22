@@ -15,10 +15,10 @@ variable "env" {
   default     = "dev"
 }
 
-variable "pubsub_subscription_name" {
-  description = "The name of the Cloud Run service"
-  type        = string
-  default     = "pubsub_subscription_name"
+variable "subscription_names" {
+  description = "List of Pub/Sub subscription names"
+  type        = list(string)
+  default     = ["pubsub_subscription_name"]
 }
 
 variable "topic_name" {

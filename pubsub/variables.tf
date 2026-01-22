@@ -3,10 +3,10 @@ variable "project_id" {
   type        = string
 }
 
-variable "pubsub_subscription_name" {
-  description = "The name of the Cloud Run service"
-  type        = string
-  default     = "pubsub_test"
+variable "pubsub_subscription_names" {
+  description = "List of Pub/Sub subscription names"
+  type        = list(string)
+  default     = ["subscription1", "subscription2", "subscription3"]
 }
 
 variable "topic_name" {

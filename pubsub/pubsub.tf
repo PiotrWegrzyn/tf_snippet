@@ -4,11 +4,13 @@ resource "google_pubsub_topic" "topic" {
   name    = var.topic_name
 }
 
-# Pub/Sub Subscription
+# Pub/Sub Subscriptions
 resource "google_pubsub_subscription" "subscription" {
+  for_each = toset(var.pubsub_subscription_names)
+
   project = var.project_id
-  name    = var.pubsub_subscription_name
-  topic = google_pubsub_topic.topic.name
+  name    = each.value
+  topic   = google_pubsub_topic.topic.name
 
   # Subscription settings
   ack_deadline_seconds       = 10
