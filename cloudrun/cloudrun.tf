@@ -20,6 +20,14 @@ resource "google_cloud_run_v2_service" "service" {
           memory = "512Mi"
         }
       }
+
+      dynamic "env" {
+        for_each = var.env_vars
+        content {
+          name  = env.value.key
+          value = env.value.value
+        }
+      }
     }
   }
 }

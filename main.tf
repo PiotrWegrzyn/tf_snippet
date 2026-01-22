@@ -27,4 +27,5 @@ module "cloudrun" {
   region                = var.region
   service_name          = var.cloud_run_service_name
   service_account_email = module.iam-module.service_account_email
+  env_vars              = var.env_vars
 }

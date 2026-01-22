@@ -17,3 +17,12 @@ variable "service_account_email" {
   description = "The service account email to use for the Cloud Run service"
   type        = string
 }
+
+variable "env_vars" {
+  type = list(object({
+    key   = string
+    value = string
+  }))
+  default     = []
+  description = "List of environment variables as key-value pairs"
+}

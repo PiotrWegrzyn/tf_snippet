@@ -32,3 +32,12 @@ variable "cloud_run_service_name" {
   type        = string
   default     = "nginx-service"
 }
+
+variable "env_vars" {
+  type = list(object({
+    key   = string
+    value = string
+  }))
+  default     = []
+  description = "List of environment variables as key-value pairs"
+}
