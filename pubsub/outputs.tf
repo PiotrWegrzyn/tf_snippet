@@ -1,9 +1,19 @@
-output "cloud_run_service_url" {
-  description = "The URL of the Cloud Run service"
-  value       = google_cloud_run_v2_service.nginx.uri
+output "topic_name" {
+  description = "The name of the Pub/Sub topic"
+  value       = google_pubsub_topic.topic.name
 }
 
-output "cloud_run_service_name" {
-  description = "The name of the Cloud Run service"
-  value       = google_cloud_run_v2_service.nginx.name
+output "topic_id" {
+  description = "The ID of the Pub/Sub topic"
+  value       = google_pubsub_topic.topic.id
+}
+
+output "subscription_name" {
+  description = "The name of the Pub/Sub subscription"
+  value       = google_pubsub_subscription.subscription.name
+}
+
+output "subscription_id" {
+  description = "The ID of the Pub/Sub subscription"
+  value       = google_pubsub_subscription.subscription.id
 }

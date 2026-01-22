@@ -26,3 +26,9 @@ variable "topic_name" {
   type        = string
   default     = "topic_name"
 }
+
+variable "cloud_run_service_name" {
+  description = "The name of the Cloud Run service"
+  type        = string
+  default     = "nginx-service"
+}
