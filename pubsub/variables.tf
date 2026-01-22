@@ -3,26 +3,15 @@ variable "project_id" {
   type        = string
 }
 
-variable "region" {
-  description = "The GCP region"
-  type        = string
-  default     = "europe-west2"
-}
-
-variable "env" {
-  description = "Environment"
-  type        = string
-  default     = "dev"
-}
-
 variable "pubsub_subscription_name" {
   description = "The name of the Cloud Run service"
   type        = string
-  default     = "pubsub_subscription_name"
+  default     = "pubsub_test"
 }
 
 variable "topic_name" {
   description = "The topic name for pub sub"
   type        = string
-  default     = "topic_name"
+  default     = "test_topic"
 }
+

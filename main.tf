@@ -1,36 +1,18 @@
-data "google_project" "project"{
+data "google_project" "project" {
   project_id = var.project_id
 }
 
 
-resource "google_cloud_run_v2_service" "nginx" {
-  project  = data.google_project.project.project_id
-  name     = var.cloud_run_service_name
-  location = var.region
+module "iam-module" {
+  source = "./iam-module"
 
-  template {
-      containers {
-        image = "nginx:alpine"
-        
-        ports {
-          container_port = 80
-        }
-
-        resources {
-          limits = {
-            cpu    = "1000m"
-            memory = "512Mi"
-          }
-      }
-    }
-  }
+  project_id        = var.project_id
 }
 
-# Allow unauthenticated access to Cloud Run service
-resource "google_cloud_run_service_iam_member" "public_access" {
-  project  = data.google_project.project.project_id
-  service  = google_cloud_run_v2_service.nginx.name
-  location = google_cloud_run_v2_service.nginx.location
-  role     = "roles/run.invoker"
-  member   = "allUsers"
+module "pubsub" {
+  source = "./pubsub"
+
+  project_id        = var.project_id
+  topic_name        = "${var.topic_name}${var.env}"
+  pubsub_subscription_name = "${var.pubsub_subscription_name}${var.env}"
 }
